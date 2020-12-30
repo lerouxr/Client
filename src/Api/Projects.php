@@ -97,7 +97,10 @@ class Projects extends AbstractApi
         $resolver->setDefined('min_access_level')
             ->setAllowedValues('min_access_level', [null, 10, 20, 30, 40, 50])
         ;
-
+        $resolver->setDefined('search_namespaces')
+            ->setAllowedTypes('search_namespaces', 'bool')
+            ->setNormalizer('search_namespaces', $booleanNormalizer)
+        ;
         return $this->get('projects', $resolver->resolve($parameters));
     }
 
